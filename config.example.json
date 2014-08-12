@@ -1,0 +1,23 @@
+{
+    keys: {
+        logs: {
+            loggly: {
+                subdomain: 'subdomain',
+                tags: ["Hey"],
+                token: '123'
+            }
+        },
+        dns: {
+            cloudflare: {
+                account: 'my@account.net',
+                token: '123'
+            }
+        },
+        vps: {
+            digitalOcean: {
+                clientId: '123',
+                key: '123'
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "Phear Engine",
+  "version": "0.0.1",
+  "description": "Welcome to the engine that runs PhearZero.com",
+  "main": "app.js",
+  "author": {
+    "name": "mike.feher",
+    "email": "root@PhearZero.com"
+  },
+  "dependencies": {
+	"loggly": "*",
+	"docker.io": "*",
+	"cloudflare": "*",
+	"digitalocean": "*"
+  }
+}
