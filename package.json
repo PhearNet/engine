@@ -1,5 +1,5 @@
 {
-  "name": "Phear Engine",
+  "name": "phear-engine",
   "version": "0.0.1",
   "description": "Welcome to the engine that runs PhearZero.com",
   "main": "app.js",
@@ -11,6 +11,7 @@
 	"loggly": "*",
 	"docker.io": "*",
 	"cloudflare": "*",
-	"digitalocean": "*"
+	"digitalocean": "*",
+	"newrelic": "*"
   }
 }
