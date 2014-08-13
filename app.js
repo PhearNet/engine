@@ -1,6 +1,8 @@
 /**
  * Startup Info
  */
+
+var newrelic = require('newrelic');
 //Passed in paramaters
 process.argv.forEach(function(val, index, array) {
     console.log(index + ': ' + val);
@@ -33,7 +35,7 @@ var INSTANCE = {
     uptime: process.uptime(),
 
     network: {
-        // ip: (require('os').networkInterfaces())["eth0"][0].address
+        ip: (require('os').networkInterfaces())["eth0"][0].address
     }
 };
 
@@ -48,6 +50,7 @@ var file = __dirname + '/config.json';
 fs.readFile(file, 'utf8', function(err, data) {
     if (err) {
         console.log('Error: ' + err);
+        newrelic.noticeError(err);
         return;
     }
 
@@ -220,8 +223,8 @@ var nginx = new reloader('/var/run/nginx.pid', function(running) {
                 console.log(docIP);
 
                 if (conf.nginx.upstream) {
-                    var serverCount = conf.nginx.upstream.server.length;
-                    console.log("ServerCount:", serverCount);
+                    //var serverCount = conf.nginx.upstream.server.length;
+                    //console.log("ServerCount:", serverCount);
                     conf.nginx.upstream._add('server', docIP + ':3001');
                 }
 
