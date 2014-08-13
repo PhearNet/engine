@@ -12,6 +12,8 @@
 	"docker.io": "*",
 	"cloudflare": "*",
 	"digitalocean": "*",
-	"newrelic": "*"
+	"newrelic": "*",
+	"nginx-reload": "*",
+	"nginx-conf": "*"
   }
 }
