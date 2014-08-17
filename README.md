@@ -1,5 +1,5 @@
 ### Status
-[![Build Status](https://travis-ci.org/PhearZero/phear-enging.png)](https://travis-ci.org/PhearZero/phear-engine)
+[![Build Status](https://travis-ci.org/PhearZero/phear-engine.png)](https://travis-ci.org/PhearZero/phear-engine)
 phear-engine
 ============
 This application controls docker & the host env
