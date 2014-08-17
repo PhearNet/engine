@@ -12,19 +12,14 @@
 	    "grunt-contrib-jshint": "~0.10.0",
 	    "grunt-contrib-nodeunit": "~0.4.1",
 	    "grunt-contrib-uglify": "~0.5.0"
-	  },
+  },
   "dependencies": {
-	//NOTE: Maybe dockerode
 	"docker.io": "*",
-	
 	"cloudflare": "*",
 	"digitalocean": "*",
 	"nginx-reload": "*",
-	"nginx-conf": "*"
-		
-	//Heavy dependency
+	"nginx-conf": "*",
 	"loggly": "*",
-	"newrelic": "*",
-	
+	"newrelic": "*"
   }
 }
