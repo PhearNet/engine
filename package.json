@@ -1,5 +1,5 @@
 {
-  "name": "Phear Engine",
+  "name": "phear-engine",
   "version": "0.0.1",
   "description": "Welcome to the engine that runs PhearZero.com",
   "main": "app.js",
@@ -7,10 +7,19 @@
     "name": "mike.feher",
     "email": "root@PhearZero.com"
   },
+  "devDependencies": {
+	    "grunt": "~0.4.5",
+	    "grunt-contrib-jshint": "~0.10.0",
+	    "grunt-contrib-nodeunit": "~0.4.1",
+	    "grunt-contrib-uglify": "~0.5.0"
+  },
   "dependencies": {
-	"loggly": "*",
 	"docker.io": "*",
 	"cloudflare": "*",
-	"digitalocean": "*"
+	"digitalocean": "*",
+	"nginx-reload": "*",
+	"nginx-conf": "*",
+	"loggly": "*",
+	"newrelic": "*"
   }
 }
