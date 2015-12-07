@@ -5,6 +5,8 @@
 FROM      ubuntu
 MAINTAINER Michael Feher <personalpc@live.com>
 
+RUN apt-get update && apt-get install -y wget
+
 RUN echo deb http://apt.newrelic.com/debian/ newrelic non-free >> /etc/apt/sources.list.d/newrelic.list
 RUN wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -
 RUN apt-get update
