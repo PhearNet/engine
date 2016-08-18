@@ -5,9 +5,9 @@ services: docker
 
 env:
   matrix:
-  - INSTANCE=ubuntu-14.04
-  - INSTANCE=ubuntu-15.04
-  - INSTANCE=ubuntu-16.04
+  - INSTANCE=default-ubuntu-1404
+  - INSTANCE=default-ubuntu-1504
+  - INSTANCE=default-ubuntu-1604
 
 before_install: curl -L https://www.getchef.com/chef/install.sh | sudo bash -s -- -P chefdk -v 0.9.0
 install: chef exec bundle install
