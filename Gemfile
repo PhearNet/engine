@@ -1,3 +1,6 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
 # The MIT License (MIT)
 #
 # Copyright (c) 2014 PhearZero
@@ -20,23 +23,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-rvm: 2.2
-language: ruby
+source 'https://rubygems.org'
 
-sudo: required
-services: docker
+gem 'rake'
+gem 'puppet'
+gem 'librarian-puppet'
+gem 'kitchen-puppet'
 
-env:
-  matrix:
-  - INSTANCE=default-ubuntu-1404
-  - INSTANCE=default-ubuntu-1504
-  # - INSTANCE=default-ubuntu-1604
+group :integration do
+  gem 'test-kitchen'
+end
 
-install: bundle install
+group :vagrant do
+  gem 'vagrant-wrapper'
+  gem 'kitchen-vagrant'
+end
 
-# https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
-before_script: sudo iptables -L DOCKER || sudo iptables -N DOCKER
-
-script:
-# Run test-kitchen with sdocker driver, for example:
-- KITCHEN_LOCAL_YAML=.kitchen.docker.yml kitchen verify ${INSTANCE}
+group :docker do
+  gem 'kitchen-docker'
+end
