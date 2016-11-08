@@ -1,0 +1,17 @@
+{
+  "name": "phearnet-engine",
+  "version": "0.1.0",
+  "author": "Mike Feher",
+  "license": "MIT",
+  "summary": "Engine",
+  "source": "https://github.com/PhearNet/engine",
+  "project_page": "https://forge.puppetlabs.com/PhearNet/engine",
+  "issues_url": "https://github.com/PhearNet/engine/issues",
+  "tags": ["nomad", "consul", "swarm"],
+  "dependencies": [
+    { "name": "KyleAnderson/consul" },
+    { "name": "dudemcbacon/nomad" },
+    { "name": "garethr/docker" }
+  ],
+  "data_provider": "hiera"
+}

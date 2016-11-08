@@ -1,3 +1,6 @@
+#!/usr/bin/env ruby
+#^syntax detection
+
 # The MIT License (MIT)
 #
 # Copyright (c) 2014 PhearZero
@@ -20,23 +23,5 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-rvm: 2.2
-
-sudo: required
-services: docker
-
-env:
-  matrix:
-  - INSTANCE=default-ubuntu-1404
-  - INSTANCE=default-ubuntu-1504
-  - INSTANCE=default-ubuntu-1604
-
-before_install: curl -L https://www.getchef.com/chef/install.sh | sudo bash -s -- -P chefdk -v 0.9.0
-install: chef exec bundle install
-
-# https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
-before_script: sudo iptables -L DOCKER || sudo iptables -N DOCKER
-
-script:
-# Run test-kitchen with docker driver, for example:
-- KITCHEN_LOCAL_YAML=.kitchen.docker.yml chef exec bundle exec kitchen verify ${INSTANCE}
+forge "https://forgeapi.puppetlabs.com"
+metadata
