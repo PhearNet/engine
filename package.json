@@ -1,25 +1,22 @@
 {
-  "name": "phear-engine",
+  "name": "phearnet-engine",
   "version": "0.0.1",
   "description": "Welcome to the engine that runs PhearZero.com",
-  "main": "app.js",
+  "main": "index.js",
   "author": {
     "name": "mike.feher",
     "email": "root@PhearZero.com"
   },
-  "devDependencies": {
-	    "grunt": "~0.4.5",
-	    "grunt-contrib-jshint": "~0.10.0",
-	    "grunt-contrib-nodeunit": "~0.4.1",
-	    "grunt-contrib-uglify": "~0.5.0"
+  "scripts":{
+    "prepublish": "bundle install && librarian-puppet install",
+    "reload": "npm run clean && npm install",
+    "clean": "rm -rf .kitchen/ .librarian/ .tmp/ .vagrant/ modules/ node_modules/"
   },
   "dependencies": {
-	"docker.io": "*",
-	"cloudflare": "*",
-	"digitalocean": "*",
-	"nginx-reload": "*",
-	"nginx-conf": "*",
-	"loggly": "*",
-	"newrelic": "*"
+    "cloudflare": "*",
+    "digitalocean": "*",
+    "loggly": "*",
+    "merge": "^1.2.0",
+    "newrelic": "*"
   }
 }
