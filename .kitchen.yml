@@ -21,6 +21,10 @@
 # SOFTWARE.
 
 ---
+driver:
+ name: vagrant
+ network:
+  - ["private_network", {type: "dhcp"}]
 provisioner:
   name: puppet_apply
   manifests_path: ./environments/engine/manifests
@@ -28,8 +32,8 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
-  - name: ubuntu-15.04
-  - name: ubuntu-16.04
+    driver:
+      box: ubuntu/trusty32
 
 suites:
   - name: default
