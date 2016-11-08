@@ -20,24 +20,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-rvm: 2.2
-language: ruby
+---
+driver:
+  name: vagrant
+  network:
+    - ["private_network", {type: "dhcp"}]
 
-sudo: required
-services: docker
+provisioner:
+  name: puppet_apply
+  manifests_path: ./environments/engine/manifests
+  modules_path: modules
 
-env:
-  matrix:
-  - INSTANCE=default-ubuntu-1404
-  - INSTANCE=default-ubuntu-1504
-  - INSTANCE=default-ubuntu-1604
+platforms:
+  - name: ubuntu-14.04
+  - name: ubuntu-15.04
+  - name: ubuntu-16.04
+  - name: centos-5.11
+  - name: centos-6.8
+  - name: centos-7.7
 
-before_install: curl -L https://www.getchef.com/chef/install.sh | sudo bash -s -- -P chefdk -v 0.9.0
-install: chef exec bundle install
-
-# https://github.com/zuazo/kitchen-in-travis-native/issues/1#issuecomment-142455888
-before_script: sudo iptables -L DOCKER || sudo iptables -N DOCKER
-
-script:
-# Run test-kitchen with docker driver, for example:
-- KITCHEN_LOCAL_YAML=./templates/.kitchen.docker.yml chef exec bundle exec kitchen verify ${INSTANCE}
+suites:
+  - name: default
