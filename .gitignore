@@ -1,6 +1,6 @@
 ### Puppet Labs
 .librarian
-/modules/
+modules
 
 ### Ruby template
 *.gem

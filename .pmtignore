@@ -1,0 +1,5 @@
+#Ignore everything but metadata and manifests
+*
+*/
+!metadata.json
+!manifests/

@@ -58,9 +58,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Provision Nomad/Docker/Consul on all nodes
   config.vm.provision "puppet" do |puppet|
-    puppet.module_path = "modules"
+    #puppet.module_path = "modules"
     puppet.environment_path = "environments"
-    puppet.environment = "engine"
+    puppet.environment = "develop"
   end
 
   # Launch a set number of nodes

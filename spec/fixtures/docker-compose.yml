@@ -1,0 +1,76 @@
+#lb:
+#  build: ./lb
+#  links:
+#  - consul
+#  ports:
+#  - "80:80"
+
+elasticsearch:
+  image: elasticsearch
+  ports:
+    - "9200"
+    - "9300"
+#/var/run/docker.sock:/var/run/docker.sock \
+#    -e GRAPHITE_HOST=<graphite host> -e COLLECTD_HOST=<colllectd host> \
+#    bobrik/collectd-docker
+#esnode:
+ # image: elasticsearch:latest
+ # command: elasticsearch -Des.network.host=0.0.0.0
+ # environment:
+ #   - UNICAST_HOSTS=elasticsearch
+ # ports:
+ #   - "9200"
+ #   - "9300"
+ # links:
+ #   - elasticsearch
+
+#collectd:
+#  build: collectd/
+#  links:
+#    - elasticsearch
+logstash:
+    build: logstash/
+    command: logstash -f /etc/logstash/conf.d/logstash.conf
+    volumes:
+      - ./logstash/config:/etc/logstash/conf.d
+    ports:
+      - "5000:5000"
+    links:
+      - elasticsearch
+
+#kibana:
+#  build: kibana/
+#  links:
+#      - elasticsearch
+
+#graphana:
+#  image: graphana/graphana:latest
+#  links:
+#      - elasticsearch
+#      - logstash
+#
+registrator:
+  command: consul://consul:8500
+  image: gliderlabs/registrator:latest
+  external_links:
+    - consul-client
+  volumes:
+  - "/var/run/docker.sock:/tmp/docker.sock"
+#
+consul:
+  image: consul
+  command: -server -bootstrap -advertise 10.0.2.15
+  ports:
+  - "8300:8300"
+  - "8400:8400"
+  - "8500:8500"
+  - "8600:53/udp"
+#
+#app:
+#  image: tutum/hello-world:latest
+#  environment:
+#    SERVICE_80_NAME: http
+#    SERVICE_NAME: app
+#    SERVICE_TAGS: production
+#  ports:
+#  - "80"

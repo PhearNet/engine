@@ -26,7 +26,10 @@ if $::ipaddress_enp0s8 != undef {
 elsif $::ipaddress_eth1 != undef {
   $listen_addr = $::ipaddress_eth1
 }
-else {
+elsif $::ipaddress_eth0 != undef and $::ipaddress_eth1 == undef {
+
+  $listen_addr = $::ipaddress_eth0
+} else{
   $listen_addr = "0.0.0.0"
 }
 
@@ -36,36 +39,19 @@ if $hostname != undef {
 else {
   $node_name = "testing.local"
 }
+package {'unzip':
+  ensure => present
+}
 
-node default {
-  package {'unzip':
-    ensure => present
-  }
+file { '/etc/sysconfig':
+  ensure => 'directory',
+}
 
-  file { '/etc/sysconfig':
-    ensure => 'directory',
-  }
+class { 'docker':
+  docker_users => ['vagrant'],
+}
 
-  class { 'docker':
-    docker_users => ['vagrant'],
-  }
-  class { 'consul':
-    require     => Package['unzip'],
-    config_hash => {
-      'bootstrap_expect'     => 2,
-      'bind_addr'            => $listen_addr,
-      'client_addr'          => '0.0.0.0',
-      'advertise_addr'       => $listen_addr,
-      'data_dir'             => '/opt/consul',
-      # 'datacenter'           => 'home',
-      'node_name'            => $node_name,
-      'server'               => true,
-      'ui_dir'               => '/opt/consul/ui',
-      'atlas_infrastructure' => 'phearzero/nomad',
-      'atlas_token'          => 'okdTr6omyXF41A.atlasv1.slNTybfKt1twgcn7zPg9Ntsyz1eFUjZvBegUX06MuFy32jyiEuxF620offQlT3s724k',
-      'atlas_join'           => true,
-    },
-  }
+node /nomad/ {
   class { 'nomad':
     require     => [ Class['docker'], Class['consul'], Package['unzip'] ],
     version => '0.5.0-rc1',
@@ -95,6 +81,24 @@ node default {
           'IP' => $listen_addr,
         },
       }
+    }
+  }
+}
+node /consul/ {
+  class { 'consul':
+    require     => Package['unzip'],
+    config_hash => {
+      'bootstrap_expect'     => 2,
+      'bind_addr'            => $listen_addr,
+      'client_addr'          => '0.0.0.0',
+      'advertise_addr'       => $listen_addr,
+      'data_dir'             => '/opt/consul',
+      # 'datacenter'           => 'home'
+      'node_name'            => $node_name,
+      'server'               => true,
+      'ui_dir'               => '/opt/consul/ui',
+      'atlas_infrastructure' => 'phearnet/engine',
+      'atlas_join'           => true
     }
   }
 }
