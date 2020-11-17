@@ -16,7 +16,7 @@
     "cloudflare": "*",
     "digitalocean": "*",
     "loggly": "*",
-    "merge": "^1.2.0",
+    "merge": "^2.1.0",
     "newrelic": "*"
   }
 }
